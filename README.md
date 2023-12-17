@@ -22,4 +22,15 @@ Make sure you have the following installed on your machine:
    git clone https://github.com/b3n0ni/loan_management.git
 
 2. Change into project directory
+   ```bash
    cd loan_management
+3. Install dependencies:
+   ```bash
+   bundle install
+4. Set up the database:
+   ```bash
+   rails db:create
+   rails db:migrate
+5. Start the Rails server:
+   ```bash
+   rails server
