@@ -40,7 +40,7 @@
 
     <div class="card">
       <div class="card-body">
-        <p class="card-text"><strong>Name:</strong> <%= @loan.user.email.split('@').first %></p>
+        <p class="card-text"><strong>Name:</strong> <%= @loan.user.name %></p>
         <p class="card-text"><strong>Loan Amount:</strong> <%= @loan.amount %></p>
         
         <% if @loan.state == 'closed' %>

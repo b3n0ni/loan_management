@@ -1,4 +1,3 @@
-# app/controllers/loans_controller.rb
 class LoansController < ApplicationController
     before_action :authenticate_user!
     before_action :set_loan, only: [:show, :approve, :confirm, :repay]
