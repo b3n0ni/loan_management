@@ -1,0 +1,62 @@
+<!-- app/views/loans/show.html.erb -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Details</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .container {
+      margin-top: 50px;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    .card {
+      background-color: #EEF0E5;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .btn-secondary {
+      margin-top: 20px;
+    }
+    .bg-light{
+      background-color: #B6C4B6 !important;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <div class="container mt-5">
+    <h1>Loan Details</h1>
+
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text"><strong>Name:</strong> <%= @loan.user.email.split('@').first %></p>
+        <p class="card-text"><strong>Loan Amount:</strong> <%= @loan.amount %></p>
+        
+        <% if @loan.state == 'closed' %>
+          <p class="card-text"><strong>Amount Paid:</strong> <%= @loan.total_amount %></p>
+        <% end %>
+        
+        <p class="card-text"><strong>Interest Rate:</strong> <%= @loan.interest_rate %></p>
+        <p class="card-text"><strong>Current State:</strong> <%= @loan.state %></p>
+      </div>
+    </div>
+
+    <%= button_to 'Back', user_dashboard_path, method: :get, class: 'btn btn-secondary mt-3' %>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

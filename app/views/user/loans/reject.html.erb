@@ -1,0 +1,5 @@
+<h1>Reject Loan</h1>
+
+<%= form_for @loan, url: reject_user_loan_path(@loan), method: :patch do |f| %>
+  <%= f.submit 'Reject Loan' %>
+<% end %>

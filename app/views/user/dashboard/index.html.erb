@@ -1,0 +1,155 @@
+<!-- app/views/user/dashboard/index.html.erb -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #B6C4B6;
+    }
+
+    .container-dashboard {
+      background-color: #EEF0E5;
+      margin-top: 40px;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #2C3E50;
+    }
+
+    .welcome-message {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #154360;
+    }
+
+    .wallet-info {
+      margin-bottom: 20px;
+    }
+
+    .alert-warning {
+      margin-top: 20px;
+    }
+
+    .btn-action {
+      margin-top: 10px;
+    }
+
+    .list-group-item {
+      background-color: #ECF0F1;
+      border: 1px solid #BDC3C7;
+      margin-bottom: 10px;
+    }
+
+    .repaid-loans {
+      margin-top: 30px;
+    }
+
+    .list-group-item:hover {
+      background-color: #D5D8DC;
+    }
+
+    .list-group-item a {
+      color: #3498DB;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container container-dashboard">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>User Dashboard</h1>
+        <p class="welcome-message"><strong>Welcome <%= current_user.email.split('@').first %>!</strong></p>
+        
+        <div class="wallet-info">
+          <p><strong>Wallet Balance:</strong> <%= current_user.wallet_amount %></p>
+
+          <% if current_user.wallet_amount.zero? %>
+            <div class="alert alert-warning">
+              You have insufficient funds in your wallet.
+            </div>
+          <% else %>
+            <%= link_to 'Request New Loan', new_user_loan_path, class: 'btn btn-primary btn-action' %>
+          <% end %>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-secondary btn-action' %>
+        </div>
+
+        <div class="loan-list">
+          <h2 class="mt-4">Active Loans</h2>
+          <% if @active_loans.any? %>
+            <div class="list-group">
+              <% @active_loans.each do |loan| %>
+                <div class="list-group-item">
+                  Amount: <%= loan.total_amount %> -
+                  Interest Rate: <%= loan.interest_rate %> -
+                  Status: <%= loan.state %>
+                  
+                  <% if loan.state == 'open' %>
+                    <%= link_to 'Repay Loan', repay_user_loan_path(loan), method: :post, data: { confirm: 'Are you sure you want to repay this loan?' }, class: 'btn btn-primary btn-sm float-right btn-action' %>
+                  <% end %>
+                  
+                  <% if loan.state == 'approved' %>
+                    <%= link_to 'Confirm', confirm_user_loan_path(loan), method: :post, data: { confirm: 'Are you sure you want to confirm this loan?' }, class: 'btn btn-primary btn-sm float-right btn-action' %>
+                  <% end %>
+                  
+                  <% if loan.state == 'approved' %>
+                    <%= link_to 'Reject', reject_user_loan_path(loan), method: :post, data: { confirm: 'Are you sure you want to reject this loan?' }, class: 'btn btn-primary btn-sm float-right btn-action' %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p>No active loans.</p>
+          <% end %>
+        </div>
+
+        <div class="loan-list repaid-loans">
+          <h2 class="mt-4">Repaid Loans</h2>
+          <% if @repaid_loans.any? %>
+            <div class="list-group">
+              <% @repaid_loans.each do |loan| %>
+                <div class="list-group-item">
+                  Amount: <%= loan.amount %> -
+                  Amount Paid: <%= loan.total_amount %> -
+                  Interest Rate: <%= loan.interest_rate %> -
+                  Status: <%= loan.state %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p>No repaid loans.</p>
+          <% end %>
+        </div>
+
+        <div class="loan-list repaid-loans">
+          <h2 class="mt-4">Rejected Loans</h2>
+          <% if @rejected_loans.any? %>
+            <div class="list-group">
+              <% @rejected_loans.each do |loan| %>
+                <div class="list-group-item">
+                  Amount: <%= loan.amount %> -
+                  Amount Paid: <%= loan.total_amount %> -
+                  Interest Rate: <%= loan.interest_rate %> -
+                  Status: <%= loan.state %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p>No repaid loans.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

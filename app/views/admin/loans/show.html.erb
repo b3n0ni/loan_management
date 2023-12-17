@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Loan Details</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      margin-top: 4rem;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      color: #007bff;
+    }
+
+    dl.row {
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      margin-right: 1rem;
+    }
+
+    .list-group {
+      margin-top: 2rem;
+    }
+
+    .list-group-item {
+      margin-bottom: 0.5rem;
+      border: 1px solid #ddd;
+    }
+
+    .list-group-item:hover {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Loan Details</h1>
+
+    <div class="container">
+      <dl class="row">
+        <dt class="col-sm-3">Loan ID:</dt>
+        <dd class="col-sm-9"><%= @loan.id %></dd>
+
+        <dt class="col-sm-3">Amount:</dt>
+        <dd class="col-sm-9"><%= @loan.amount %></dd>
+      </dl>
+
+      <%= form_for @loan, url: accept_admin_loan_path(@loan), method: :patch, remote: true do |f| %>
+        <div class="form-group">
+          <%= f.label :interest_rate %>
+          <%= f.text_field :interest_rate, id: 'interest-rate-field', class: 'form-control' %>
+        </div>
+
+        <%= f.submit 'Approve Loan', class: 'btn btn-success' %>
+      <% end %>
+
+      <%= button_to 'Reject Loan', reject_admin_loan_path(@loan), method: :post, class: 'btn btn-danger' %>
+
+      <h2 class="mt-4">Transaction History</h2>
+
+      <% if @loan_transactions.is_a?(Array) && @loan_transactions.any? %>
+        <ul class="list-group">
+          <% @loan_transactions.each do |transaction| %>
+            <li class="list-group-item">
+              Transaction ID: <%= transaction.id %>, Amount: <%= transaction.amount %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No transactions found.</p>
+      <% end %>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .container-dashboard {
+      background-color: #EEF0E5;
+      margin-top: 40px;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      color: #007bff;
+    }
+
+    .list-group-item {
+      border: 1px solid #ddd;
+    }
+
+    .list-group-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .btn-sign-out {
+      background-color: #dc3545;
+      border: none;
+    }
+
+    .btn-sign-out:hover {
+      background-color: #c82333;
+    }
+    .back {
+      background-color: #B6C4B6;
+    }
+  </style>
+</head>
+<body class="back">
+
+  <div class="container container-dashboard">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Admin Dashboard</h1>
+        <p><strong>Wallet Balance:</strong> <%= current_user.wallet_amount %></p>
+
+        <h2 class="mt-4">Loan Requests</h2>
+        <% if @loan_requests.any? %>
+          <ul class="list-group">
+            <% @loan_requests.each do |loan| %>
+              <li class="list-group-item">
+                <%= link_to "Amount #{loan.amount}", admin_loan_path(loan) %> -
+                Requested by <%= loan.user.email.split('@').first %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No loan requests.</p>
+        <% end %>
+      </div>
+
+      <div class="col-md-4">
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-sign-out float-right mt-2' %>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <h2>Active Loans</h2>
+        <% if @active_loans.any? %>
+          <ul class="list-group">
+            <% @active_loans.each do |loan| %>
+              <li class="list-group-item">
+                Name: <%= loan.user.email.split('@').first %> |
+                Amount: <%= loan.amount %> |  
+                Interest rate <%= loan.interest_rate %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No active loans.</p>
+        <% end %>
+      </div>
+
+      <div class="col-md-6">
+        <h2>Closed Loans</h2>
+        <% if @closed_loans.any? %>
+          <ul class="list-group">
+            <% @closed_loans.each do |loan| %>
+              <li class="list-group-item">
+                Name: <%= loan.user.email.split('@').first %> | 
+                Amount: <%= loan.amount %> | 
+                Amount Received: <%= loan.total_amount %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No closed loans.</p>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <h2>Approved Loans</h2>
+        <% if @approved_loans.any? %>
+          <ul class="list-group">
+            <% @approved_loans.each do |loan| %>
+              <li class="list-group-item">
+                Name: <%= loan.user.email.split('@').first %> | 
+                Amount: <%= loan.amount %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No approved loans.</p>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <h2>Rejected Loans</h2>
+        <% if @rejected_loans.any? %>
+          <ul class="list-group">
+            <% @rejected_loans.each do |loan| %>
+              <li class="list-group-item">
+                Name: <%= loan.user.email.split('@').first %> | 
+                Amount: <%= loan.amount %> |
+                Status: <%= loan.state %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No rejected loans.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

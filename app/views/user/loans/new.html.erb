@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Loan</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #B6C4B6;
+    }
+
+    .container {
+      max-width: 400px;
+      border-radius: 10px;
+      background-color: #EEF0E5;
+      margin: 40px auto;
+      padding: 40px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      text-align: center;
+      color: #007bff;
+    }
+
+    .form-container {
+      max-width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .numeric {
+      width: 100%;
+    }
+
+    .btn-submit {
+      width: 100%;
+    }
+
+    .amount-label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>New Loan</h1>
+
+    <div class="form-container">
+      <%= form_for @loan do |f| %>
+        <div class="form-group">
+          <%= f.label :amount, class: 'amount-label' %>
+          <%= f.number_field :amount, class: 'form-control numeric', placeholder: 'Enter loan amount' %>
+        </div>
+
+        <%= f.submit 'Create Loan', class: 'btn btn-primary btn-submit' %>
+      <% end %>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

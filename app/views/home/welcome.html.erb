@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Loan Management</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background: url('https://img.freepik.com/free-photo/growth-economy-with-coins-concept_23-2148525276.jpg?w=1800&t=st=1702736951~exp=1702737551~hmac=b1f16ea115a03ef7c2553e8d4a9b002c577c372a72c2ba4e5cdba3d539bec857') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .container-custom {
+      background-color: #B6C4B6;
+      border-radius: 10px;
+      background-color: rgba(48, 77, 48, 0.5);
+      inline-size: fit-content;
+      margin-top: 100px;
+      margin-left: 150px;
+      text-align: center;
+      padding: 100px;
+    }
+
+    .btn-custom {
+      margin-top: 20px;
+    }
+    .display-4 {
+      font-weight: bold;
+  }
+  </style>
+</head>
+<body class="bg-light">
+
+  <div class="container-custom">
+    <h1 class="display-4">Welcome to Loan Management</h1>
+    <p class="lead">Explore our loan management system to manage your loans efficiently.</p>
+
+    <div class="mt-4">
+      <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-primary mr-2 btn-custom' %>
+      <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-secondary btn-custom' %>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
