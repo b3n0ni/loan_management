@@ -21,3 +21,5 @@ Make sure you have the following installed on your machine:
    ```bash
    git clone https://github.com/b3n0ni/loan_management.git
 
+2. Change into project directory
+   cd loan_management
