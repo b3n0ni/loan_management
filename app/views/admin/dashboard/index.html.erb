@@ -52,7 +52,7 @@
             <% @loan_requests.each do |loan| %>
               <li class="list-group-item">
                 <%= link_to "Amount #{loan.amount}", admin_loan_path(loan) %> -
-                Requested by <%= loan.user.email.split('@').first %>
+                Requested by <%= loan.user.name %>
               </li>
             <% end %>
           </ul>
@@ -73,7 +73,7 @@
           <ul class="list-group">
             <% @active_loans.each do |loan| %>
               <li class="list-group-item">
-                Name: <%= loan.user.email.split('@').first %> |
+                Name: <%= loan.user.name %> |
                 Amount: <%= loan.amount %> |  
                 Interest rate <%= loan.interest_rate %> %
               </li>
@@ -90,7 +90,7 @@
           <ul class="list-group">
             <% @closed_loans.each do |loan| %>
               <li class="list-group-item">
-                Name: <%= loan.user.email.split('@').first %> | 
+                Name: <%= loan.user.name %> | 
                 Amount: <%= loan.amount %> | 
                 Amount Received: <%= loan.total_amount %>
               </li>
@@ -106,7 +106,7 @@
           <ul class="list-group">
             <% @approved_loans.each do |loan| %>
               <li class="list-group-item">
-                Name: <%= loan.user.email.split('@').first %> | 
+                Name: <%= loan.user.name %> | 
                 Amount: <%= loan.amount %>
               </li>
             <% end %>
@@ -121,7 +121,7 @@
           <ul class="list-group">
             <% @rejected_loans.each do |loan| %>
               <li class="list-group-item">
-                Name: <%= loan.user.email.split('@').first %> | 
+                Name: <%= loan.user.name %> | 
                 Amount: <%= loan.amount %> |
                 Status: <%= loan.state %>
               </li>

@@ -12,10 +12,12 @@
     }
 
     .container-dashboard {
+      height: 90vh;
       background-color: #EEF0E5;
-      margin-top: 40px;
+      margin: 40px auto;
       border-radius: 10px;
-      padding: 20px;
+      padding: 32px;
+      overflow: scroll;
     }
 
     h1 {
@@ -65,7 +67,7 @@
     <div class="row">
       <div class="col-md-8">
         <h1>User Dashboard</h1>
-        <p class="welcome-message"><strong>Welcome <%= current_user.email.split('@').first %>!</strong></p>
+        <p class="welcome-message"><strong>Welcome <%= current_user.name %>!</strong></p>
         
         <div class="wallet-info">
           <p><strong>Wallet Balance:</strong> <%= current_user.wallet_amount %></p>
