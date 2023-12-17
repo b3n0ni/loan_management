@@ -1,24 +1,36 @@
-# README
+# Loan Management App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple Loan Management application built with Ruby on Rails.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+To run this application locally, follow these steps:
 
-* System dependencies
+### Prerequisites
 
-* Configuration
+Make sure you have the following installed on your machine:
 
-* Database creation
+- Ruby
+- Ruby on Rails
+- SQLite or another supported database
 
-* Database initialization
+### Installation
 
-* How to run the test suite
+1. Clone the repository to your local machine:
 
-* Services (job queues, cache servers, search engines, etc.)
+   ```bash
+   git clone https://github.com/b3n0ni/loan_management.git
 
-* Deployment instructions
-
-* ...
+2. Change into project directory
+   ```bash
+   cd loan_management
+3. Install dependencies:
+   ```bash
+   bundle install
+4. Set up the database:
+   ```bash
+   rails db:create
+   rails db:migrate
+5. Start the Rails server:
+   ```bash
+   rails server
