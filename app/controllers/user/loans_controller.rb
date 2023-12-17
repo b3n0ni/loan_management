@@ -35,7 +35,6 @@ class User::LoansController < ApplicationController
 
           InterestCalculationWorker.perform_in(5.minutes, @loan.id)
           LoanDebitingWorker.perform_in(5.minutes, @loan.id)
-
           redirect_to @loan
         end
       else

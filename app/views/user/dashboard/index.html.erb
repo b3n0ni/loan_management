@@ -87,7 +87,7 @@
               <% @active_loans.each do |loan| %>
                 <div class="list-group-item">
                   Amount: <%= loan.total_amount %> -
-                  Interest Rate: <%= loan.interest_rate %> -
+                  Interest Rate: <%= loan.interest_rate %> % -
                   Status: <%= loan.state %>
                   
                   <% if loan.state == 'open' %>
@@ -117,7 +117,7 @@
                 <div class="list-group-item">
                   Amount: <%= loan.amount %> -
                   Amount Paid: <%= loan.total_amount %> -
-                  Interest Rate: <%= loan.interest_rate %> -
+                  Interest Rate: <%= loan.interest_rate %> % -
                   Status: <%= loan.state %>
                 </div>
               <% end %>
@@ -135,7 +135,7 @@
                 <div class="list-group-item">
                   Amount: <%= loan.amount %> -
                   Amount Paid: <%= loan.total_amount %> -
-                  Interest Rate: <%= loan.interest_rate %> -
+                  Interest Rate: <%= loan.interest_rate %> % -
                   Status: <%= loan.state %>
                 </div>
               <% end %>

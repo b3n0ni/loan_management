@@ -10,7 +10,7 @@
   <% if current_user.admin? %>
     <div class="field">
       <%= form.label :interest_rate %>
-      <%= form.number_field :interest_rate, step: '0.01', min: 0, value: @loan.interest_rate || 5.0 %>
+      <%= form.number_field :interest_rate, step: '0.01', min: 0, value: @loan.interest_rate || 5.0 %> %
     </div>
   <% end %>
 

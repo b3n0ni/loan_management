@@ -10,6 +10,7 @@ class LoansController < ApplicationController
     def create
       @loan = current_user.loans.build(loan_params)
       @loan.total_amount = @loan.amount
+      @loan.interest_rate = 5
       @loan.requested!
   
       if @loan.save
