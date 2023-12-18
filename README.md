@@ -27,6 +27,7 @@ Make sure you have the following installed on your machine:
 3. Install dependencies:
    ```bash
    bundle install
+   yarn install
 4. Set up the database:
    ```bash
    rails db:create
@@ -34,3 +35,7 @@ Make sure you have the following installed on your machine:
 5. Start the Rails server:
    ```bash
    rails server
+6. To check sidekiq
+   ```bash
+   bundle exec sidekiq
+http://localhost:3000/sidekiq/
