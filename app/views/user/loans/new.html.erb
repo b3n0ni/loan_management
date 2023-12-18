@@ -53,10 +53,10 @@
 
     <div class="form-container">
       <%= form_for @loan do |f| %>
-        <div class="form-group">
-          <%= f.label :amount, class: 'amount-label' %>
-          <%= f.number_field :amount, class: 'form-control numeric', placeholder: 'Enter loan amount' %>
-        </div>
+      <div class="form-group">
+        <%= f.label :amount, class: 'amount-label' %>
+        <%= f.number_field :amount, class: 'form-control numeric', placeholder: 'Enter loan amount', required: true %>
+      </div>
 
         <%= f.submit 'Create Loan', class: 'btn btn-primary btn-submit' %>
       <% end %>
